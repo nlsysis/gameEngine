@@ -1,3 +1,4 @@
+#include "egpch.h"
 #include "Application.h"
 
 #include "Engine/Event/ApplicationEvent.h"
@@ -26,4 +27,3 @@ namespace Engine
 		while (true);
 	}
 }
-
