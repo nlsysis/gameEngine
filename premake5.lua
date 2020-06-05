@@ -26,6 +26,7 @@ project "gameEngineTest"
 
 	includedirs 
 	{
+		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include"
 	}
 	
@@ -89,7 +90,7 @@ project "Sandbox"
 
 		defines
 		{
-			"EG_PLATFORM_WINDOWS",
+			"EG_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"

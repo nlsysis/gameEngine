@@ -131,6 +131,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Sandbox.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\gameEngineTest\gameEngineTest.vcxproj">
       <Project>{3533CE38-2101-C23E-0A95-3265F6019EA3}</Project>
     </ProjectReference>

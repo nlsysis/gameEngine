@@ -2,11 +2,11 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="src">
-      <UniqueIdentifier>{0af64437-a41a-44b4-9ec3-54658f8684c5}</UniqueIdentifier>
+      <UniqueIdentifier>{fe6ed77e-c465-4b89-8dc6-d8286157e8b0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sandbox.cpp">
+    <ClCompile Include="src\Sandbox.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
