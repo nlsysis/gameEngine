@@ -10,6 +10,13 @@ workspace "gameEngineTest"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+--Include directories relative to root folser (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "gameEngineTest/vendor/GLFW/include"
+
+--Add another project by premake5.lua
+include "gameEngineTest/vendor/GLFW"
+
 project "gameEngineTest"
 	location "gameEngineTest"
 	kind "SharedLib"
@@ -18,6 +25,7 @@ project "gameEngineTest"
 	targetdir("bin/" .. outputdir .. "/%{prj.name}")
 	objdir("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	--Set precompile header
 	pchheader "egpch.h"
 	pchsource "gameEngineTest/src/egpch.cpp"
 
@@ -27,12 +35,18 @@ project "gameEngineTest"
 		"%{prj.name}/src/**.cpp"
 	}
 
-	includedirs 
+	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
 	}
 	
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
+	}
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"

@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 /**
 	*@brief impletement the events of resize window and colse window 
 **/
