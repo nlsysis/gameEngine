@@ -47,6 +47,7 @@ project "gameEngineTest"
 		"GLFW",
 		"opengl32.lib"
 	}
+
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"
