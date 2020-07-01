@@ -7,3 +7,6 @@
 [submodule "gameEngineTest\\vendor\\GLFW"]
 	path = gameEngineTest\\vendor\\GLFW
 	url = https://github.com/TheCherno/glfw
+[submodule "imgui"]
+	path = gameEngineTest\\vendor\\imgui
+	url = https://github.com/TheCherno/imgui
