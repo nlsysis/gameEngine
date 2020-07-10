@@ -1,5 +1,6 @@
 workspace "gameEngineTest"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations
 	{
@@ -20,6 +21,7 @@ IncludeDir["ImGui"] = "gameEngineTest/vendor/imgui"
 include "gameEngineTest/vendor/GLFW"
 include "gameEngineTest/vendor/Glad"
 include "gameEngineTest/vendor/imgui"
+
 
 project "gameEngineTest"
 	location "gameEngineTest"
@@ -70,7 +72,7 @@ project "gameEngineTest"
 
 		postbuildcommands
 		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
 		}
 
 	filter "configurations:Debug"
@@ -116,7 +118,6 @@ project "Sandbox"
 	
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "10.0.17763.0"
 
 		defines

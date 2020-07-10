@@ -2,6 +2,7 @@
 #include "Application.h"
 
 #include "Engine/Event/ApplicationEvent.h"
+#include "Input.h"
 #include <glad/glad.h>
 
 namespace Engine
@@ -11,7 +12,7 @@ namespace Engine
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application()
-	{
+	{ 
 		EG_CORE_ASSERT(!s_Instance, "Application already exsits!");
 		s_Instance = this;
 
@@ -41,6 +42,9 @@ namespace Engine
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 			m_Window->OnUpdate();
+
+			auto[x, y] = Input::GetMousePosition();
+			EG_CORE_TRACE("TEST {0},{1}", x, y);
 		}
 
 	}
