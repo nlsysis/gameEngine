@@ -13,3 +13,6 @@
 [submodule "gameEngineTest\\vendor\\glm"]
 	path = gameEngineTest\\vendor\\glm
 	url = https://github.com/g-truc/glm
+[submodule "gameEngineTest\\vendor\\imgui2"]
+	path = gameEngineTest\\vendor\\imgui2
+	url = https://github.com/ocornut/imgui
