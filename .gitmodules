@@ -1,18 +1,12 @@
 [submodule "gameEngineTest\\vendor\\spdlog"]
 	path = gameEngineTest\\vendor\\spdlog
 	url = https://github.com/gabime/spdlog
-[submodule "gameEngine\\vendor\\GLFW"]
-	path = gameEngine\\vendor\\GLFW
-	url = https://github.com/TheCherno/glfw
 [submodule "gameEngineTest\\vendor\\GLFW"]
 	path = gameEngineTest\\vendor\\GLFW
 	url = https://github.com/TheCherno/glfw
-[submodule "imgui"]
-	path = gameEngineTest\\vendor\\imgui
-	url = https://github.com/TheCherno/imgui
 [submodule "gameEngineTest\\vendor\\glm"]
 	path = gameEngineTest\\vendor\\glm
 	url = https://github.com/g-truc/glm
-[submodule "gameEngineTest\\vendor\\imgui2"]
-	path = gameEngineTest\\vendor\\imgui2
+[submodule "gameEngineTest\\vendor\\imgui"]
+	path = gameEngineTest\\vendor\\imgui
 	url = https://github.com/ocornut/imgui
