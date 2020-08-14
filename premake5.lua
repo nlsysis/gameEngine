@@ -16,6 +16,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "gameEngineTest/vendor/GLFW/include"
 IncludeDir["Glad"] = "gameEngineTest/vendor/Glad/include"
 IncludeDir["ImGui"] = "gameEngineTest/vendor/imgui"
+IncludeDir["glm"] = "gameEngineTest/vendor/glm"
 
 --Add another project by premake5.lua
 include "gameEngineTest/vendor/GLFW"
@@ -39,7 +40,9 @@ project "gameEngineTest"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	includedirs
@@ -48,7 +51,8 @@ project "gameEngineTest"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 	
 	links
@@ -108,7 +112,8 @@ project "Sandbox"
 	includedirs 
 	{
 		"gameEngineTest/vendor/spdlog/include",
-		"gameEngineTest/src"
+		"gameEngineTest/src",
+		"%{IncludeDir.glm}"
 	}
 
 	links
