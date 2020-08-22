@@ -1,11 +1,13 @@
 #pragma once
 
 #include "Core.h"
+#include "Window.h"
 #include "Event/Event.h"
 #include "Event/ApplicationEvent.h"
 #include "Engine/LayerStack.h"
 
-#include "Window.h"
+#include "Engine/imgui/ImGuiLayer.h"
+
 
 namespace Engine
 {
@@ -28,6 +30,7 @@ namespace Engine
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 
 		bool m_Running = true;
 		LayerStack m_LayerStack;

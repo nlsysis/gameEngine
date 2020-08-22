@@ -15,7 +15,6 @@
 
 // CHANGELOG
 // (minor and older changes stripped away, please see git history for details)
-//  2020-08-10: Inputs: Fixed horizontal mouse wheel direction.
 //  2019-12-05: Inputs: Added support for ImGuiMouseCursor_NotAllowed mouse cursor.
 //  2019-07-21: Inputs: Added mapping for ImGuiKey_KeyPadEnter.
 //  2019-05-11: Inputs: Don't filter character value from ALLEGRO_EVENT_KEY_CHAR before calling AddInputCharacter().
@@ -333,7 +332,7 @@ bool ImGui_ImplAllegro5_ProcessEvent(ALLEGRO_EVENT* ev)
         if (ev->mouse.display == g_Display)
         {
             io.MouseWheel += ev->mouse.dz;
-            io.MouseWheelH -= ev->mouse.dw;
+            io.MouseWheelH += ev->mouse.dw;
             io.MousePos = ImVec2(ev->mouse.x, ev->mouse.y);
         }
         return true;

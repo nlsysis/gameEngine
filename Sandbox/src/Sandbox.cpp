@@ -41,7 +41,6 @@ public:
 	Sandbox()
 	{ 
 		PushLayer(new ExampleLayer()); 
-		PushLayer(new Engine::ImGuiLayer());
 	}
 	~Sandbox() {}
 };

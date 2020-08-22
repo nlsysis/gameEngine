@@ -1340,6 +1340,9 @@
     <ClCompile Include="src\Engine\imgui\ImGuiLayer.cpp">
       <Filter>src\Engine\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="src\Engine\imgui\ImguiBuild.cpp">
+      <Filter>src\Engine\imgui</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
