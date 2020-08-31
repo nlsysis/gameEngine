@@ -10,11 +10,17 @@
     <Filter Include="src\Engine\Event">
       <UniqueIdentifier>{E32745A8-CF20-64FA-F852-497FE4AA4306}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Engine\Renderer">
+      <UniqueIdentifier>{F838018B-649A-DE98-ED07-254B59681558}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Engine\imgui">
       <UniqueIdentifier>{FCB3CBAA-E8AC-EAFC-11DF-CF81FD36CA08}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
@@ -84,11 +90,17 @@
     <ClInclude Include="src\Engine\MouseButtonCodes.h">
       <Filter>src\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="src\Engine\Renderer\GraphicsContext.h">
+      <Filter>src\Engine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Engine\Window.h">
       <Filter>src\Engine</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\imgui\ImGuiLayer.h">
       <Filter>src\Engine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Platform\Windows</Filter>
@@ -1342,6 +1354,9 @@
     </ClCompile>
     <ClCompile Include="src\Engine\imgui\ImguiBuild.cpp">
       <Filter>src\Engine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
