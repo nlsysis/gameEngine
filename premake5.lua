@@ -70,7 +70,7 @@ project "gameEngineTest"
 	}
 
 	filter "system:windows"
-		systemversion "10.0.17763.0"
+		systemversion "latest"
 
 		defines
 		{
@@ -125,7 +125,7 @@ project "Sandbox"
 	}
 	
 	filter "system:windows"
-		systemversion "10.0.17763.0"
+		systemversion "latest"
 
 		defines
 		{
