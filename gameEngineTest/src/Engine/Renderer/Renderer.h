@@ -2,9 +2,10 @@
 
 namespace Engine
 {
-	enum RendererAPI
+	enum class RendererAPI
 	{
-		None = 0, OpenGL = 1, DirectX3D11 = 2};
+		None = 0, OpenGL = 1, DirectX3D11 = 2
+	};
 
 	class Renderer
 	{

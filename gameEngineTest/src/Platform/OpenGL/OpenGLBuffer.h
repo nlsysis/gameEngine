@@ -9,7 +9,7 @@ namespace Engine
 	{
 	public:
 		OpenGLVertexBuffer(float* vertexSrc, uint32_t size);
-		virtual ~OpenGLVertexBuffer() {}      //make the destructor void
+		virtual ~OpenGLVertexBuffer();      //make the destructor void
 
 		virtual void Bind() const override;
 		virtual void Unbind() const override;
@@ -25,7 +25,7 @@ namespace Engine
 	{
 	public:
 		OpenGLIndexBuffer(uint32_t* indexSrc, uint32_t count);
-		virtual ~OpenGLIndexBuffer() {}      //make the destructor void
+		virtual ~OpenGLIndexBuffer();     //make the destructor void
 
 		virtual void Bind() const override;
 		virtual void Unbind() const override;

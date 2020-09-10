@@ -74,16 +74,4 @@ namespace Engine
 
 		m_IndexBuffers = indexBuffer;
 	}
-
-	const std::vector<std::shared_ptr<VeretexBuffer>>& OpenGLVertexArray::GetVertexBuffer()
-	{
-		
-	}
-
-	const std::shared_ptr<IndexBuffer>& OpenGLVertexArray::GetIndexBuffer()
-	{
-	
-	}
-
-
 }

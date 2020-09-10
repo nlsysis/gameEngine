@@ -15,8 +15,8 @@ namespace Engine
 		virtual void AddVertexBuffer(const std::shared_ptr<VeretexBuffer>& vertexBuffer) override;
 		virtual void SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer) override;
 
-		virtual const std::vector<std::shared_ptr<VeretexBuffer>>& GetVertexBuffer() override;
-		virtual const std::shared_ptr<IndexBuffer>& GetIndexBuffer() override;
+		virtual const std::vector<std::shared_ptr<VeretexBuffer>>& GetVertexBuffer() const { return m_VertexBuffers; }
+		virtual const std::shared_ptr<IndexBuffer>& GetIndexBuffer() const { return m_IndexBuffers; }
 	private:
 		uint32_t m_RendererID;
 		std::vector<std::shared_ptr<VeretexBuffer>> m_VertexBuffers;
