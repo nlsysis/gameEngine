@@ -5,7 +5,7 @@
 namespace Engine
 {
 
-	class OpenGLVertexBuffer : public VeretexBuffer
+	class OpenGLVertexBuffer : public VertexBuffer
 	{
 	public:
 		OpenGLVertexBuffer(float* vertexSrc, uint32_t size);

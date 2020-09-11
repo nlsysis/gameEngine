@@ -30,6 +30,11 @@ namespace Engine
 		glCreateVertexArrays(1, &m_RendererID);
 	}
 
+	OpenGLVertexArray::~OpenGLVertexArray()
+	{
+		glDeleteVertexArrays(1, &m_RendererID);
+	}
+
 	void OpenGLVertexArray::Bind() const
 	{
 		glBindVertexArray(m_RendererID);
@@ -40,7 +45,7 @@ namespace Engine
 		glBindVertexArray(0);
 	}
 
-	void OpenGLVertexArray::AddVertexBuffer(const std::shared_ptr<VeretexBuffer>& vertexBuffer)
+	void OpenGLVertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer)
 	{
 		// Should set layout before calling addVertexBuffer function
 		EG_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "There is no layout!");

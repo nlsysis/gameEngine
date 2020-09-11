@@ -24,26 +24,26 @@ namespace Engine
 
 		m_VertexArray.reset(VertexArray::Create());
 
-		float vertices[3*7]
+		float vertices[3 * 7]
 		{
-			-0.5f,-0.5f,0.0f,0.8f,0.2f,0.8f,1.0f,
-			0.5f,-0.5f,0.0f,0.8f,0.2f,0.8f,1.0f,
-			0.5f,0.5f,0.0f,0.2f,0.2f,0.8f,1.0f
+			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
+			 0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
+			 0.0f,  0.5f, 0.0f, 0.2f, 0.2f, 0.8f, 1.0f
 		};
+		std::shared_ptr<VertexBuffer> vertexBuffer;
+		vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
-		m_VertexBuffer.reset(VeretexBuffer::Create(vertices, sizeof(vertices)));
-
-		
 		BufferLayout layout = {
 			{ ShaderDataType::Float3, "a_Position"},
 			{ ShaderDataType::Float4, "a_Color"}
 		};
-		m_VertexBuffer->SetLayout(layout);
-		m_VertexArray->AddVertexBuffer(m_VertexBuffer);
+		vertexBuffer->SetLayout(layout);
+		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
-		uint32_t indices[3] = { 1,2,3 };
-		m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-		m_VertexArray->SetIndexBuffer(m_IndexBuffer);
+		uint32_t indices[3] = { 0,1,2 };
+		std::shared_ptr<IndexBuffer> indexBuffer;
+		indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 		std::string vertexSrc = R"(
 			#version 330 core
@@ -94,7 +94,7 @@ namespace Engine
 
 			m_Shader->Bind();
 			m_VertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNALED, nullptr);
+			glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();

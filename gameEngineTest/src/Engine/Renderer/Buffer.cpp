@@ -7,7 +7,7 @@
 
 namespace Engine
 {
-	VeretexBuffer* VeretexBuffer::Create(float * vertexSrc, uint32_t size)
+	VertexBuffer* VertexBuffer::Create(float * vertexSrc, uint32_t size)
 	{
 		switch (Renderer::GetAPI())
 		{

@@ -79,6 +79,8 @@ namespace Engine
 	class BufferLayout
 	{
 	public:
+		BufferLayout() {}
+
 		BufferLayout(const std::initializer_list<BufferElement>& elements)
 			:m_Elements(elements)
 		{
@@ -113,10 +115,10 @@ namespace Engine
 	/**
 	 * @brief This is the abstract class of VertexBuffer
 	 */
-	class VeretexBuffer
+	class VertexBuffer
 	{
 	public:
-		virtual ~VeretexBuffer() {}      ///make the destructor void
+		virtual ~VertexBuffer() {}      ///make the destructor void
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
@@ -124,7 +126,7 @@ namespace Engine
 		virtual const BufferLayout& GetLayout() const = 0;
 		virtual void SetLayout(const BufferLayout& layout) = 0;
 
-		static VeretexBuffer* Create(float* vertexSrc, uint32_t size);
+		static VertexBuffer* Create(float* vertexSrc, uint32_t size);
 	};
 
 	/**

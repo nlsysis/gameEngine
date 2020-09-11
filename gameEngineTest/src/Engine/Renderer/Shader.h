@@ -7,7 +7,7 @@ namespace Engine
 	class Shader
 	{
 	public:
-		Shader(const std::string& vertexSrc, const std::string fragmentSrc);
+		Shader(const std::string& vertexSrc, const std::string& fragmentSrc);
 		~Shader();
 
 		void Bind() const;

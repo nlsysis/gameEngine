@@ -40,9 +40,7 @@ namespace Engine
 		LayerStack m_LayerStack;
 
 		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VeretexBuffer> m_VertexBuffer;
 		std::shared_ptr<VertexArray> m_VertexArray;
-		std::shared_ptr<IndexBuffer> m_IndexBuffer;
 
 	private:
 		static Application* s_Instance;
