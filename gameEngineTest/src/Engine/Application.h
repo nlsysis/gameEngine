@@ -8,12 +8,6 @@
 
 #include "Engine/imgui/ImGuiLayer.h"
 
-#include "Engine/Renderer/Shader.h"
-#include "Engine/Renderer/Buffer.h"
-#include "Engine/Renderer/VertexArray.h"
-
-#include "Engine/Renderer/OrthographicCamera.h"
-
 namespace Engine
 {
 	class EG_API Application
@@ -34,16 +28,13 @@ namespace Engine
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 
+	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		OrthographicCamera m_Camera;
+		float m_LastFrameTime = 0.0f;
 	private:
 		static Application* s_Instance;
 	};
