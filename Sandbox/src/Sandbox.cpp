@@ -1,12 +1,15 @@
 #include <Engine.h>
 
+#include "Platform/OpenGL/OpenGLShader.h"
+
 #include "imgui/imgui.h"
+#include <glm/gtc/matrix_transform.hpp>
 
 class ExampleLayer : public Engine::Layer 
 {
 public:
 	ExampleLayer()
-		: Layer("Example"), m_Camera( -2.0f, 2.0f, -2.0f, 2.0f ), m_CameraPosition(0.0f)
+		: Layer("Example"), m_Camera( -2.0f, 2.0f, -2.0f, 2.0f ), m_CameraPosition(0.0f), m_ModelPosition(0.0f)
 	{
 		m_VertexArray.reset(Engine::VertexArray::Create());
 
@@ -38,6 +41,7 @@ public:
 			layout(location = 1) in vec4 a_Color;;
 			
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 
 			out vec3 v_Position;
 			out vec4 v_Color;
@@ -46,7 +50,7 @@ public:
 			{
 				v_Position = a_Position;
 				v_Color = a_Color;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
 			}
 		)";
 
@@ -65,7 +69,7 @@ public:
 			}
 		)";
 
-		m_Shader.reset(new Engine::Shader(vertexSrc, fragmentSrc));
+		m_Shader.reset(Engine::Shader::Create(vertexSrc, fragmentSrc));
 	}
 	 
 	void OnUpdate(float ts) override
@@ -90,7 +94,8 @@ public:
 
 		Engine::Renderer::BeginScene(m_Camera);
 
-		Engine::Renderer::Submit(m_Shader, m_VertexArray);
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_ModelPosition);
+		Engine::Renderer::Submit(m_Shader, m_VertexArray, transform);
 
 		Engine::Renderer::EndScene();
 	}
@@ -113,6 +118,8 @@ private:
 	float m_MoveSpeed = 2.0f;
 
 	float m_Rotation = 0.0f;
+
+	glm::vec3 m_ModelPosition;
 
 };
 class Sandbox : public Engine::Application 
