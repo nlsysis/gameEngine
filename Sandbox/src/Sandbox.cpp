@@ -19,7 +19,7 @@ public:
 			 0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
 			 0.0f,  0.5f, 0.0f, 0.2f, 0.2f, 0.8f, 1.0f
 		};
-		std::shared_ptr<Engine::VertexBuffer> vertexBuffer;
+		Engine::Ref<Engine::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Engine::VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		Engine::BufferLayout layout = {
@@ -30,7 +30,7 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0,1,2 };
-		std::shared_ptr<Engine::IndexBuffer> indexBuffer;
+		Engine::Ref<Engine::IndexBuffer> indexBuffer;
 		indexBuffer.reset(Engine::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
@@ -83,6 +83,15 @@ public:
 			m_CameraPosition.x -= m_MoveSpeed * ts;
 		}
 
+		if (Engine::Input::IsKeyPressed(EG_KEY_UP))
+		{
+			m_CameraPosition.y -= m_MoveSpeed * ts;
+		}
+		else if (Engine::Input::IsKeyPressed(EG_KEY_DOWN))
+		{
+			m_CameraPosition.y += m_MoveSpeed * ts;
+		}
+
 		if (Engine::Input::IsKeyPressed(EG_KEY_A))
 			m_Rotation += 180.0f * ts;
 
@@ -110,8 +119,8 @@ public:
 	}
 
 private:
-	std::shared_ptr<Engine::Shader> m_Shader;
-	std::shared_ptr<Engine::VertexArray> m_VertexArray;
+	Engine::Ref<Engine::Shader> m_Shader;
+	Engine::Ref<Engine::VertexArray> m_VertexArray;
 
 	Engine::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
