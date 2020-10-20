@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "gameEngineTest/vendor/GLFW/include"
 IncludeDir["Glad"] = "gameEngineTest/vendor/Glad/include"
 IncludeDir["ImGui"] = "gameEngineTest/vendor/imgui"
 IncludeDir["glm"] = "gameEngineTest/vendor/glm"
+IncludeDir["stb_image"] = "gameEngineTest/vendor/stb_image"
 
 --Add another project by premake5.lua
 include "gameEngineTest/vendor/GLFW"
@@ -42,6 +43,8 @@ project "gameEngineTest"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
@@ -58,7 +61,8 @@ project "gameEngineTest"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 	
 	links
