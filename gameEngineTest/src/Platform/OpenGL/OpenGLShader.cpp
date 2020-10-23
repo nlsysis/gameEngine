@@ -80,7 +80,7 @@ namespace Engine
 		while (pos != std::string::npos)
 		{
 			size_t eol = source.find_first_of("\r\n", pos);
-			EG_CORE_ASSERT(eol != std::string::npos, "Syntax error");
+			EG_CORE_ASSERT((eol != std::string::npos), "Syntax error");
 			size_t begin = pos + typeTokenLength + 1;
 			std::string type = source.substr(begin, eol - begin);
 			EG_CORE_ASSERT(ShaderTypeFromString(type), "Invaild shader type specified.");
@@ -96,7 +96,7 @@ namespace Engine
 	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources)
 	{
 		GLuint program = glCreateProgram();
-		EG_CORE_ASSERT(shaderSources.size() <= 2, "Only support two shaders now!");
+		EG_CORE_ASSERT((shaderSources.size() <= 2), "Only support two shaders now!");
 		std::array<GLenum, 2> glShaderIDs;
 		int glShaderIDIndex = 0;
 		for(auto& kv : shaderSources)

@@ -10,7 +10,7 @@ class ExampleLayer : public Engine::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example"), m_Camera( -1.6f, 1.6f, -0.9f, 0.9f ), m_CameraPosition(0.0f), m_ModelPosition(0.0f)
+		: Layer("Example"), m_CameraController(1280.0f / 720.0f),  m_ModelPosition(0.0f)
 	{
 		m_VertexArray.reset(Engine::VertexArray::Create());
 
@@ -136,34 +136,12 @@ public:
 	 
 	void OnUpdate(float ts) override
 	{
-		if (Engine::Input::IsKeyPressed(EG_KEY_LEFT))
-		{
-			m_CameraPosition.x += m_MoveSpeed * ts;
-		}
-		else if (Engine::Input::IsKeyPressed(EG_KEY_RIGHT))
-		{
-			m_CameraPosition.x -= m_MoveSpeed * ts;
-		}
-
-		if (Engine::Input::IsKeyPressed(EG_KEY_UP))
-		{
-			m_CameraPosition.y -= m_MoveSpeed * ts;
-		}
-		else if (Engine::Input::IsKeyPressed(EG_KEY_DOWN))
-		{
-			m_CameraPosition.y += m_MoveSpeed * ts;
-		}
-
-		if (Engine::Input::IsKeyPressed(EG_KEY_A))
-			m_Rotation += 180.0f * ts;
-
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_Rotation);
+		m_CameraController.OnUpdate(ts);
 
 		Engine::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Engine::RenderCommand::Clear();
 
-		Engine::Renderer::BeginScene(m_Camera);
+		Engine::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_ModelPosition);
 
@@ -199,7 +177,7 @@ public:
 
 	void OnEvent(Engine::Event& event) override
 	{
-	//	EG_TRACE("{0}", event);
+		m_CameraController.OnEvent(event);
 	}
 
 private:
@@ -211,11 +189,7 @@ private:
 
 	Engine::Ref<Engine::Texture2D> m_Texture;
 
-	Engine::OrthographicCamera m_Camera;
-	glm::vec3 m_CameraPosition;
-	float m_MoveSpeed = 2.0f;
-
-	float m_Rotation = 0.0f;
+	Engine::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_ModelPosition;
 	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
