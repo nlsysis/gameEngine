@@ -1,6 +1,6 @@
 #include "egpch.h"
 
-#include "Engine/Core.h"
+#include "Engine/Core/Core.h"
 #include "WinsWindow.h"
 
 #include "Engine/Event/ApplicationEvent.h"

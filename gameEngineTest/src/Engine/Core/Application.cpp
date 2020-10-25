@@ -4,8 +4,8 @@
 #include "Engine/Event/ApplicationEvent.h"
 #include "Input.h"
 
-#include "Renderer/Renderer.h"
-#include "Core/Timestep.h"
+#include "Engine/Renderer/Renderer.h"
+#include "Timestep.h"
 
 #include <GLFW/glfw3.h>
 
