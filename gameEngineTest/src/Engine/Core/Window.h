@@ -3,7 +3,7 @@
 #include "egpch.h"
 
 #include "Engine/Core/Core.h"
-#include "Engine/Event/Event.h"
+#include "Engine/Events/Event.h"
 
 namespace Engine
 {

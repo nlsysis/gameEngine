@@ -3,8 +3,8 @@
 #include "Engine/Renderer/OrthographicCamera.h"
 #include "Engine/Core/Timestep.h"
 
-#include "Engine/Event/ApplicationEvent.h"
-#include "Engine/Event/MouseEvent.h"
+#include "Engine/Events/ApplicationEvent.h"
+#include "Engine/Events/MouseEvent.h"
 
 namespace Engine
 {

@@ -1,7 +1,7 @@
 #include "egpch.h"
 #include "Application.h"
 
-#include "Engine/Event/ApplicationEvent.h"
+#include "Engine/Events/ApplicationEvent.h"
 #include "Input.h"
 
 #include "Engine/Renderer/Renderer.h"
