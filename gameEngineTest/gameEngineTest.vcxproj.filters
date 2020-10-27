@@ -1389,7 +1389,10 @@
     <ClInclude Include="src\Engine\Events\MouseEvent.h">
       <Filter>src\Engine\Event</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\Renderer\Renderer2D.h" />
+    <ClInclude Include="src\Engine\Renderer\Renderer2D.h">
+      <Filter>src\Engine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\Core\Application.cpp">
@@ -1467,6 +1470,8 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="src\Engine\Renderer\Renderer2D.cpp">
+      <Filter>src\Engine\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

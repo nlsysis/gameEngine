@@ -4,6 +4,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <chrono>
+
 Sandbox2D::Sandbox2D()
 	: Layer("Sandbox2D"), m_CameraController(1280.0f / 720.0f)
 {
@@ -22,16 +24,30 @@ void Sandbox2D::OnDetach()
 
 void Sandbox2D::OnUpdate(float timestep)
 {
-	m_CameraController.OnUpdate(timestep);
-	Engine::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
-	Engine::RenderCommand::Clear();
+	EG_PROFILE_FUNCTION();
 
-	Engine::Renderer2D::BeginScene(m_CameraController.GetCamera());
+	//update
+	{	
+		EG_PROFILE_SCOPE("Sandbox2D::OnUpdate");
+		m_CameraController.OnUpdate(timestep);
+	}
 
-	Engine::Renderer2D::DrawQuad({ 0.0f,-0.5f }, { 1.0f, 1.0f }, { 0.8f, 0.2f, 0.3f, 1.0f });
-	Engine::Renderer2D::DrawQuad({ 0.0f,0.8f }, { 0.6f, 1.0f }, { 0.8f, 0.2f, 0.8f, 1.0f });
-	Engine::Renderer2D::DrawQuad({ 0.6f,0.3f }, { 0.6f, 0.5f }, m_CheckboardTexture);
-	Engine::Renderer2D::EndScene();
+	//Render
+	{
+		EG_PROFILE_SCOPE("Sandbox2D::Render");
+		Engine::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
+		Engine::RenderCommand::Clear();
+	}
+
+	{
+		EG_PROFILE_SCOPE("Sandbox2D::Begin Render");
+		Engine::Renderer2D::BeginScene(m_CameraController.GetCamera());
+
+		Engine::Renderer2D::DrawQuad({ 0.0f,-0.5f }, { 1.0f, 1.0f }, { 0.8f, 0.2f, 0.3f, 1.0f });
+		Engine::Renderer2D::DrawQuad({ 0.0f,0.8f }, { 0.6f, 1.0f }, { 0.8f, 0.2f, 0.8f, 1.0f });
+		Engine::Renderer2D::DrawQuad({ 0.6f,0.3f }, { 0.6f, 0.5f }, m_CheckboardTexture);
+		Engine::Renderer2D::EndScene();
+	}
 }
 
 void Sandbox2D::OnImGuiRender()
