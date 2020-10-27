@@ -41,6 +41,6 @@ namespace Engine
 
 		virtual void* GetNativeWindow() const = 0;
 		/// Get implemented per platform
-		static Window* Create(const WindowProps& props = WindowProps());
+		static Scope<Window> Create(const WindowProps& props = WindowProps());
 	};
 }

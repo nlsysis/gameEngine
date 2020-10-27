@@ -27,26 +27,36 @@ namespace Engine
 
 	OpenGLVertexArray::OpenGLVertexArray()
 	{
+		EG_PROFILE_FUNCTION();
+
 		glCreateVertexArrays(1, &m_RendererID);
 	}
 
 	OpenGLVertexArray::~OpenGLVertexArray()
 	{
+		EG_PROFILE_FUNCTION();
+
 		glDeleteVertexArrays(1, &m_RendererID);
 	}
 
 	void OpenGLVertexArray::Bind() const
 	{
+		EG_PROFILE_FUNCTION();
+
 		glBindVertexArray(m_RendererID);
 	}
 
 	void OpenGLVertexArray::Unbind() const
 	{
+		EG_PROFILE_FUNCTION();
+
 		glBindVertexArray(0);
 	}
 
 	void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer)
 	{
+		EG_PROFILE_FUNCTION();
+
 		// Should set layout before calling addVertexBuffer function
 		EG_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "There is no layout!");
 
@@ -71,6 +81,8 @@ namespace Engine
 
 	void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer)
 	{
+		EG_PROFILE_FUNCTION();
+
 		// Set the inderxBuffer in the same vertexbuffer but not good for read.
 		glBindVertexArray(m_RendererID);
 		indexBuffer->Bind();

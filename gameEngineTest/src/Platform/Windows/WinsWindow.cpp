@@ -7,29 +7,34 @@
 #include "Engine/Events/MouseEvent.h"
 #include "Engine/Events/KeyEvent.h"
 
-#include "Platform/OpenGL/OpenGLContext.h"
+#include "Engine/Renderer/Renderer.h"
 
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Engine
 {
-	static bool s_GLFWInitialized = false;
+	static uint8_t s_GLFWWindowCount = 0;
 	static void GLFWErrorCallback(int error, const char* description)
 	{
 		EG_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
-	Window* Window::Create(const WindowProps& props)
+	Scope<Window> Window::Create(const WindowProps& props)
 	{
-		return new WinsWindow(props);
+		return CreateScope<WinsWindow>(props);
 	}
 
 	WinsWindow::WinsWindow(const WindowProps& props)
 	{
+		EG_PROFILE_FUNCTION();
+
 		Init(props);
 	}
 
 	WinsWindow::~WinsWindow()
 	{
+		EG_PROFILE_FUNCTION();
+
 		Shutdown();
 	}
 
@@ -41,17 +46,25 @@ namespace Engine
 
 		EG_CORE_INFO("Creation window {0} {1}, {2}", props.Title, props.Width, props.Height);
 
-		if (!s_GLFWInitialized)
+		if (s_GLFWWindowCount == 0)
 		{
+			EG_PROFILE_SCOPE("glfwInit");
 			// TODO: glfwTerminate on system shutdown
 			int success = glfwInit();
 			EG_CORE_ASSERT(success, "Coudle not initialize GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
-			s_GLFWInitialized = true;
 		}
 		
-		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		
+		{
+			EG_PROFILE_SCOPE("glfwCreateWindow");
+			#if defined(EG_DEBUG)
+				if (Renderer::GetAPI() == RendererAPI::API::OpenGL)
+					glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+			#endif
+			m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+			++s_GLFWWindowCount;
+		}
+
 		m_Context = new OpenGLContext(m_Window);
 		m_Context->Init();
 
@@ -159,17 +172,27 @@ namespace Engine
 
 	void WinsWindow::Shutdown()
 	{
+		EG_PROFILE_FUNCTION();
+
 		glfwDestroyWindow(m_Window);
+		--s_GLFWWindowCount;
+
+		if (s_GLFWWindowCount == 0)
+			glfwTerminate();
 	}
 
 	void WinsWindow::OnUpdate()
 	{
+		EG_PROFILE_FUNCTION();
+
 		glfwPollEvents();
 		m_Context->SwapBuffers();
 	}
 
 	void WinsWindow::SetVSync(bool enabled)
 	{
+		EG_PROFILE_FUNCTION();
+
 		if (enabled)
 			glfwSwapInterval(1);
 		else

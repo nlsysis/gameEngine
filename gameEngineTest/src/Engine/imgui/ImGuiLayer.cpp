@@ -23,6 +23,8 @@ namespace Engine
 	}
 	void ImGuiLayer::OnAttach()
 	{
+		EG_PROFILE_FUNCTION();
+
 		///Copy. form file example_glfw_opengl3-main.cpp
 
 		// Setup Dear ImGui context
@@ -60,6 +62,8 @@ namespace Engine
 	}
 	void ImGuiLayer::OnDetach()
 	{
+		EG_PROFILE_FUNCTION();
+
 		///Copy. form file example_glfw_opengl3-main.cpp
 		// Cleanup
 		ImGui_ImplOpenGL3_Shutdown();
@@ -75,6 +79,8 @@ namespace Engine
 
 	void ImGuiLayer::Begin()
 	{
+		EG_PROFILE_FUNCTION();
+
 		///Copy. form file example_glfw_opengl3-main.cpp
 		// Start the Dear ImGui frame
 		ImGui_ImplOpenGL3_NewFrame();
@@ -84,6 +90,8 @@ namespace Engine
 
 	void ImGuiLayer::End()
 	{
+		EG_PROFILE_FUNCTION();
+
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();
 		io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());

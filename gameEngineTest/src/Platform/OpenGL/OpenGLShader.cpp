@@ -20,6 +20,8 @@ namespace Engine
 
 	OpenGLShader::OpenGLShader(const std::string& filepath)
 	{
+		EG_PROFILE_FUNCTION();
+
 		std::string source = ReadFile(filepath);
 		auto shaderSources = PreProcess(source);
 		Compile(shaderSources);
@@ -44,6 +46,8 @@ namespace Engine
 
 	OpenGLShader::~OpenGLShader()
 	{
+		EG_PROFILE_FUNCTION();
+
 		glDeleteProgram(m_RendererID);
 	}
 
@@ -73,6 +77,8 @@ namespace Engine
 
 	std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string& source)
 	{
+		EG_PROFILE_FUNCTION();
+
 		std::unordered_map<GLenum, std::string> shaderSources;
 		const char* typeToken = "#type";
 		size_t typeTokenLength = strlen(typeToken);
@@ -95,6 +101,8 @@ namespace Engine
 
 	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources)
 	{
+		EG_PROFILE_FUNCTION();
+
 		GLuint program = glCreateProgram();
 		EG_CORE_ASSERT((shaderSources.size() <= 2), "Only support two shaders now!");
 		std::array<GLenum, 2> glShaderIDs;
@@ -174,10 +182,14 @@ namespace Engine
 
 	void OpenGLShader::Bind() const
 	{
+		EG_PROFILE_FUNCTION();
+
 		glUseProgram(m_RendererID);
 	}
 	void OpenGLShader::Unbind() const
 	{
+		EG_PROFILE_FUNCTION();
+
 		glUseProgram(0);
 	}
 
