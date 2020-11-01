@@ -27,9 +27,9 @@ namespace Engine
 			s_RenderAPI->Clear();
 		}
 
-		inline static void DrawIndexed(const Ref<VertexArray>& vertexArray)
+		inline static void DrawIndexed(const Ref<VertexArray>& vertexArray, uint32_t indexCount = 0)
 		{
-			s_RenderAPI->DrawIndexed(vertexArray);
+			s_RenderAPI->DrawIndexed(vertexArray, indexCount);
 		}
 	private:
 		static RendererAPI* s_RenderAPI;

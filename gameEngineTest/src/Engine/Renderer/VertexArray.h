@@ -11,6 +11,7 @@ namespace Engine
 	class VertexArray
 	{
 	public:
+		static Ref<VertexArray> Create();
 		virtual ~VertexArray() {}      ///make the destructor void
 
 		virtual void Bind() const = 0;
@@ -22,6 +23,5 @@ namespace Engine
 		virtual const std::vector<Ref<VertexBuffer>>& GetVertexBuffer() const = 0;
 		virtual const Ref<IndexBuffer>& GetIndexBuffer() const = 0;
 
-		static Ref<VertexArray> Create();
 	};
 }

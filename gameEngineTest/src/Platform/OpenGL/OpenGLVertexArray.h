@@ -7,6 +7,7 @@ namespace Engine
 	{
 	public:
 		OpenGLVertexArray();
+
 		virtual ~OpenGLVertexArray();      ///make the destructor void
 
 		virtual void Bind() const override;
