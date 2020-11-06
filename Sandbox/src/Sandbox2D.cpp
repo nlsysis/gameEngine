@@ -33,6 +33,7 @@ void Sandbox2D::OnUpdate(float timestep)
 	}
 
 	//Render
+	Engine::Renderer2D::ResetStats();
 	{
 		EG_PROFILE_SCOPE("Sandbox2D::Render");
 		Engine::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
@@ -56,6 +57,15 @@ void Sandbox2D::OnUpdate(float timestep)
 void Sandbox2D::OnImGuiRender()
 {
 	ImGui::Begin("Settings");
+
+	auto stats = Engine::Renderer2D::GetStats();
+	ImGui::Text("Statistics");
+	ImGui::Text("Draw Calls: %d", stats.DrawCalls);
+	ImGui::Text("Quads Count: %d", stats.QuadCount);
+	ImGui::Text("Vertex Count: %d", stats.GetTotalVertexCount());
+	ImGui::Text("Index Count: %d", stats.GetTotalIndexCount());
+
+
 	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 	ImGui::End();
 }
