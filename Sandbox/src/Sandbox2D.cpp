@@ -18,6 +18,8 @@ void Sandbox2D::OnAttach()
 	m_SpriteSheet = Engine::Texture2D::Create("assets/textures/RPGpack_sheet_2X.png");
 
 	m_SpriteStairs = Engine::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 2, 1 }, { 128, 128 }, {1, 2});
+
+	m_CameraController.SetZoomlevel(5.0f);
 }
 
 void Sandbox2D::OnDetach()
