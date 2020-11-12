@@ -15,6 +15,9 @@ Sandbox2D::Sandbox2D()
 void Sandbox2D::OnAttach()
 {
 	m_CheckboardTexture = Engine::Texture2D::Create("assets/textures/Checkerboard.png");
+	m_SpriteSheet = Engine::Texture2D::Create("assets/textures/RPGpack_sheet_2X.png");
+
+	m_SpriteStairs = Engine::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 2, 1 }, { 128, 128 }, {1, 2});
 }
 
 void Sandbox2D::OnDetach()
@@ -45,11 +48,11 @@ void Sandbox2D::OnUpdate(float timestep)
 		Engine::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
 		//Engine::Renderer2D::DrawQuad({ 0.0f,-0.5f }, { 1.0f, 1.0f }, { 0.8f, 0.2f, 0.3f, 1.0f });
-		Engine::Renderer2D::DrawQuad({ 0.0f,0.8f }, { 0.6f, 1.0f }, { 0.8f, 0.2f, 0.8f, 1.0f });
+		//Engine::Renderer2D::DrawQuad({ 0.0f,0.8f }, { 0.6f, 1.0f }, { 0.8f, 0.2f, 0.8f, 1.0f });
 		//Engine::Renderer2D::DrawQuad({ 0.6f,0.3f }, { 0.6f, 0.5f }, { 0.8f, 0.2f, 0.3f, 1.0f });
-		Engine::Renderer2D::DrawRotationQuad({ 0.6f,0.3f }, { 0.6f, 0.5f }, 45.0f, { 0.8f, 0.2f, 0.3f, 1.0f });
+		//Engine::Renderer2D::DrawRotationQuad({ 0.6f,0.3f }, { 0.6f, 0.5f }, 45.0f, { 0.8f, 0.2f, 0.3f, 1.0f });
 		//Engine::Renderer2D::DrawQuad({ 0.1f,0.3f, -0.1f}, { 0.8f, 0.5f }, m_CheckboardTexture, glm::vec4(1.0f, 0.3f, 0.6f, 1.0f), 1.0f);
-		Engine::Renderer2D::DrawRotationQuad({ 0.1f,0.3f, -0.1f}, { 0.8f, 0.5f }, -45.0f, m_CheckboardTexture, glm::vec4(1.0f, 0.3f, 0.6f, 1.0f), 1.0f);
+		Engine::Renderer2D::DrawQuad({ 0.0f, 0.0f}, { 1.0f, 2.0f }, m_SpriteStairs, glm::vec4(1.0f, 0.3f, 0.6f, 1.0f), 1.0f);
 		Engine::Renderer2D::EndScene();
 	}
 }

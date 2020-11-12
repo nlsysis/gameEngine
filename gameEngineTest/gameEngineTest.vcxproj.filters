@@ -1393,6 +1393,7 @@
       <Filter>src\Engine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Debug\Instrumentor.h" />
+    <ClInclude Include="src\Engine\Renderer\SubTexture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\Core\Application.cpp">
@@ -1473,5 +1474,6 @@
     <ClCompile Include="src\Engine\Renderer\Renderer2D.cpp">
       <Filter>src\Engine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Engine\Renderer\SubTexture2D.cpp" />
   </ItemGroup>
 </Project>

@@ -17,6 +17,8 @@ private:
 	Engine::OrthographicCameraController m_CameraController;
 	
 	Engine::Ref<Engine::Texture2D> m_CheckboardTexture;
+	Engine::Ref<Engine::Texture2D> m_SpriteSheet;
+	Engine::Ref<Engine::SubTexture2D> m_SpriteStairs;
 	Engine::Ref<Engine::VertexArray> m_SquareVA;
 	Engine::Ref<Engine::Shader> m_FlatColorShader;
 
