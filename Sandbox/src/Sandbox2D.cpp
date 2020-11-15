@@ -20,6 +20,11 @@ void Sandbox2D::OnAttach()
 	m_SpriteStairs = Engine::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 2, 1 }, { 128, 128 }, {1, 2});
 
 	m_CameraController.SetZoomlevel(5.0f);
+
+	Engine::FramebufferSpecification fbSpec;
+	fbSpec.Width = 1280;
+	fbSpec.Height = 720;
+	m_Framebuffer = Engine::Framebuffer::Create(fbSpec);
 }
 
 void Sandbox2D::OnDetach()
@@ -41,6 +46,7 @@ void Sandbox2D::OnUpdate(float timestep)
 	Engine::Renderer2D::ResetStats();
 	{
 		EG_PROFILE_SCOPE("Sandbox2D::Render");
+		m_Framebuffer->Bind();
 		Engine::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		Engine::RenderCommand::Clear();
 	}
@@ -52,10 +58,11 @@ void Sandbox2D::OnUpdate(float timestep)
 		//Engine::Renderer2D::DrawQuad({ 0.0f,-0.5f }, { 1.0f, 1.0f }, { 0.8f, 0.2f, 0.3f, 1.0f });
 		//Engine::Renderer2D::DrawQuad({ 0.0f,0.8f }, { 0.6f, 1.0f }, { 0.8f, 0.2f, 0.8f, 1.0f });
 		//Engine::Renderer2D::DrawQuad({ 0.6f,0.3f }, { 0.6f, 0.5f }, { 0.8f, 0.2f, 0.3f, 1.0f });
-		//Engine::Renderer2D::DrawRotationQuad({ 0.6f,0.3f }, { 0.6f, 0.5f }, 45.0f, { 0.8f, 0.2f, 0.3f, 1.0f });
+		Engine::Renderer2D::DrawRotationQuad({ 0.6f,0.3f }, { 0.6f, 0.5f }, 45.0f, { 0.8f, 0.2f, 0.3f, 1.0f });
 		//Engine::Renderer2D::DrawQuad({ 0.1f,0.3f, -0.1f}, { 0.8f, 0.5f }, m_CheckboardTexture, glm::vec4(1.0f, 0.3f, 0.6f, 1.0f), 1.0f);
 		Engine::Renderer2D::DrawQuad({ 0.0f, 0.0f}, { 1.0f, 2.0f }, m_SpriteStairs, glm::vec4(1.0f, 0.3f, 0.6f, 1.0f), 1.0f);
 		Engine::Renderer2D::EndScene();
+		m_Framebuffer->UnBind();
 	}
 }
 
@@ -132,8 +139,9 @@ void Sandbox2D::OnImGuiRender()
 
 	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 
-	uint32_t texture = m_CheckboardTexture->GetRendererID();
-	ImGui::Image((void*)texture, ImVec2{ 64.0f,64.0f });
+	uint32_t texture = m_Framebuffer->GetColorAttachmentRendererID();
+//	uint32_t texture = m_CheckboardTexture->GetRendererID();
+	ImGui::Image((void*)texture, ImVec2{ 320.0f, 180.0f });
 	ImGui::End();
 
 	ImGui::End();
