@@ -7,7 +7,7 @@
 #include <chrono>
 
 Sandbox2D::Sandbox2D()
-	: Layer("Sandbox2D"), m_CameraController(1280.0f / 720.0f)
+	: Layer("Sandbox2D"), m_CameraController(1280.0f / 720.0f, true)
 {
 
 }
@@ -138,11 +138,23 @@ void Sandbox2D::OnImGuiRender()
 
 
 	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
-
-	uint32_t texture = m_Framebuffer->GetColorAttachmentRendererID();
-//	uint32_t texture = m_CheckboardTexture->GetRendererID();
-	ImGui::Image((void*)texture, ImVec2{ 320.0f, 180.0f });
 	ImGui::End();
+
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
+	ImGui::Begin("Viewport");
+	ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+	if (m_Viewportsize != *((glm::vec2*)&viewportPanelSize))
+	{
+		//recreating framebuffer
+		m_Framebuffer->Resize((uint32_t)viewportPanelSize.x, (uint32_t)viewportPanelSize.y);
+		m_Viewportsize = { viewportPanelSize.x, viewportPanelSize.y };
+		m_CameraController.OnResize(viewportPanelSize.x, viewportPanelSize.y);
+	}
+	uint32_t texture = m_Framebuffer->GetColorAttachmentRendererID();
+	ImGui::Image((void*)texture, ImVec2{ m_Viewportsize.x, m_Viewportsize.y }, ImVec2{ 0, 1 }, ImVec2{1, 0});
+
+	ImGui::End();
+	ImGui::PopStyleVar();
 
 	ImGui::End();
 }
